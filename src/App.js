@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import http from 'axios'
 
 function App() {
+  const [nameValue, setNameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  const signup = async() => { 
+    try {
+      await http.post('http://localhost:4000/api/signup', {
+        name: nameValue,
+        password: passwordValue
+      })
+      alert("Successfully signed up ✅")
+      setNameValue('')
+      setPasswordValue('')
+    } catch(err) {
+      if(!err.response){
+      alert("Oops... Something went wrong 🙁")
+      }
+      if (err.response.status === 409) {
+        alert('User already exists')
+      }
+      if (err.response.status === 400) {
+        alert('Missing credentials')
+      }
+    }
+   }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Registration</h1>
+      <input
+        placeholder="username"
+        value={nameValue}
+        onChange={(e) => setNameValue(e.target.value)}
+      />
+      <input
+        placeholder="password"
+        type='password'
+        value={passwordValue}
+        onChange={(e) => setPasswordValue(e.target.value)}
+      />
+      <button onClick={signup}>Sign up</button>
     </div>
   );
 }

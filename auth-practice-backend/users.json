@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Főnök",
+        "password": "boss123"
+    },
+    {
+        "name": "Mester",
+        "password": "boss12"
+    },
+    {
+        "name": "Főni",
+        "password": "imaboss"
+    }
+]
