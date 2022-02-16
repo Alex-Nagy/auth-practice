@@ -1,14 +1,16 @@
 [
     {
-        "name": "Főnök",
-        "password": "boss123"
+        "name": "user1",
+        "password": "123",
+        "todos": [
+            "fozzel kavet"
+        ]
     },
     {
-        "name": "Mester",
-        "password": "boss12"
-    },
-    {
-        "name": "Főni",
-        "password": "imaboss"
+        "name": "user2",
+        "password": "234",
+        "todos": [
+            "vasalas"
+        ]
     }
 ]
