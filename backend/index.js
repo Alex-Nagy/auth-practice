@@ -82,6 +82,21 @@ app.get("/api/todo", (req, res) => {
   res.json(user.todos);
 });
 
+app.post('/api/login', (req, res) => {
+  const authHead = req.header("authorization");
+  if (!authHead) res.sendStatus(401);
+
+  const username = authHead.split(":::")[0];
+  const password = authHead.split(":::")[1];
+
+  const user = users.find(
+    (user) => user.name === username && user.password === password
+  );
+  if (!user) return res.sendStatus(401);
+
+  res.sendStatus(200)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
